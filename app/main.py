@@ -1,18 +1,15 @@
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
-# import os
+from fastapi.responses import JSONResponse, StreamingResponse
 from datetime import datetime
 from pathlib import Path
-
-# from fastapi import FastAPI, File, UploadFile
-#from fastapi.responses import StreamingResponse
 from ultralytics import YOLO
-#from PIL import Image
-#import io
+from PIL import Image
+import io
 
 app = FastAPI()
 
-model = YOLO("../Visao-computacional/modelo_yolo_teste/best.pt")
+model_path = Path(__file__).resolve().parent.parent / "Visao-Computacional" / "modelo_yolo_teste" / "best.pt"
+model = YOLO(str(model_path))
 
 UPLOAD_DIR = Path(__file__).parent / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
@@ -33,11 +30,8 @@ def coffee():
 
 @app.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
-    print("📦 file recebido:", file)
     if file is None:
-        return JSONResponse(content={
-            "error": "Nenhum arquivo recebido"
-            }, status_code=400)
+        return JSONResponse(content={"error": "Nenhum arquivo recebido"}, status_code=400)
 
     filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{file.filename}"
     file_path = UPLOAD_DIR / filename
@@ -46,7 +40,13 @@ async def upload_image(file: UploadFile = File(...)):
         content = await file.read()
         f.write(content)
 
-    return JSONResponse(
-        status_code=201,
-        content={"message": "Imagem salva com sucesso!", "file_path": str(file_path)}
-    )
+    results = model.predict(source=str(file_path), save=False, imgsz=640)
+
+    segmented_img = results[0].plot()
+
+    img_pil = Image.fromarray(segmented_img)
+    img_byte_arr = io.BytesIO()
+    img_pil.save(img_byte_arr, format='JPEG')
+    img_byte_arr.seek(0)
+
+    return StreamingResponse(content=img_byte_arr, media_type="image/jpeg")

@@ -8,4 +8,8 @@ __pycache__/
 # Arquivos de ambiente (variáveis secretas)
 .env
 
+uploads
+
 uploads/Visao-Computacional/modelo_yolo_teste/best.pt
+Visao-Computacional/modelo_yolo_teste/best.pt
+*pt
