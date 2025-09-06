@@ -2,7 +2,7 @@ import cv2
 from ultralytics import YOLO
 import numpy as np
 
-model = YOLO("modelo_yolo_teste/best.pt")
+model = YOLO("modelos_yolo/best_segmentador.pt")
 
 def detectar_objetos_imagem(model, img_path, conf=0.2):
     results = model.predict(source=img_path, conf=conf)
@@ -42,6 +42,6 @@ def detectar_objetos_imagem(model, img_path, conf=0.2):
     return img_encoded.tobytes()
 
 
-imagem = r"base_teste/Tr-pi_1114_jpg.rf.d7932c9af74196f293163c2178684cd6.jpg"
+imagem = r"Visao-Computacional\base_teste\img_92_jpg.rf.5e2862d76dd7376fc4df0838c1ccf34d.jpg"
 detectar_objetos_imagem(model, imagem)
 
