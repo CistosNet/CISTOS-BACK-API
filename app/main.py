@@ -13,8 +13,8 @@ app = FastAPI()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SEGMENTATION_MODEL_PATH = BASE_DIR / "modelos_yolo/best_segmentador.pt"
-CLASSIFICATION_MODEL_PATH = BASE_DIR / "modelos_yolo/best_classificador.pt"
+SEGMENTATION_MODEL_PATH = BASE_DIR / "modelos_yolo_2/best_segmentador.pt"
+CLASSIFICATION_MODEL_PATH = BASE_DIR / "modelos_yolo_2/best_classificador.pt"
 
 segmentation_model = YOLO(str(SEGMENTATION_MODEL_PATH))
 classification_model = YOLO(str(CLASSIFICATION_MODEL_PATH))
