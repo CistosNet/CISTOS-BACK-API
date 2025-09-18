@@ -41,6 +41,19 @@ CistoNet-API/
 ```
 
 
+
+### 3.5 Ou instale essas bibliotecas caso esteja com outra versão do Python
+```bash
+    pip install ultralytics
+    pip install apscheduler
+    pip install fastapi
+    pip install pillow
+    pip install uvicorn
+    pip install python-multipart
+```
+
+
+
 ### 4. Rode o servidor
 ```bash
     uvicorn app.main:app --reload
