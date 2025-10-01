@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="/static/images/favicon.png" type="">
+
+  <title> CistosNet </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+  <link rel="stylesheet" href="/static/css/analysis.css">
+  
+
+  <!-- fonts style -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
+  
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="/static/css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="hero_bg_box">
+      <img src="/static/images/hero-bg.png" alt="">
+    </div>
+
+    <!-- header section starts -->
+    <header class="header_section">
+  <div class="container">
+    <nav id="departments-navbar" class="navbar navbar-expand-lg custom_nav-container">
+      <a class="navbar-brand" href="index.html">
+        <span>CistosNet</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class=""> </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analysis.html"> Análise
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="history.html">Histórico</a>
+             <span class="sr-only">(current)</span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <!-- end header section -->
+  </div>
+
+  <div class="tw-container tw-mx-auto tw-px-4 tw-py-8 tw-max-w-6xl" style="margin-top: 30px;">
+    <!-- Cabeçalho -->
+    <div class="tw-mb-8">
+        <h1 class="tw-text-2xl tw-font-bold tw-text-gray-800">Histórico de Análises</h1>
+        <p class="tw-text-gray-600">Visualize e gerencie suas análises anteriores</p>
+    </div>
+
+    <!-- Barra de pesquisa e filtros -->
+    <div class="tw-mb-6 tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-sm tw-border tw-border-gray-200">
+        <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4">
+            <!-- Campo de busca -->
+            <div>
+                <label for="search-input" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-1">Pesquisar</label>
+                <div class="tw-relative">
+                    <div class="tw-absolute tw-inset-y-0 tw-left-0 tw-pl-3 tw-flex tw-items-center tw-pointer-events-none">
+                        <i class="fas fa-search tw-text-gray-400"></i>
+                    </div>
+                    <input type="text" id="search-input" class="tw-pl-10 tw-w-full tw-px-4 tw-py-2 tw-border tw-border-gray-300 tw-rounded-lg focus:tw-ring-indigo-500 " placeholder="Nome da análise...">
+                </div>
+            </div>
+
+            <!-- Filtro por data -->
+            <div>
+                <label for="date-filter" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-1">Período</label>
+                <select id="date-filter" class="tw-w-full tw-px-4 tw-py-2 tw-border tw-border-gray-300 tw-rounded-lg focus:tw-ring-indigo-500 focus:tw-border-indigo-500">
+                    <option value="all">Todas as datas</option>
+                    <option value="today">Hoje</option>
+                    <option value="week">Esta semana</option>
+                    <option value="month">Este mês</option>
+                    <option value="year">Este ano</option>
+                    <option value="custom">Personalizado</option>
+                </select>
+            </div>
+
+            <!-- Botão de filtro -->
+            <div class="tw-flex tw-items-end">
+                <button id="apply-filters" 
+              class="tw-text-white tw-font-medium tw-py-2 tw-px-6 tw-rounded-lg tw-transition tw-duration-300 tw-w-full"
+              style="background-color: #148464; border: 1px solid #148464;"
+              onmouseover="this.style.backgroundColor='#0f6a50'" 
+              onmouseout="this.style.backgroundColor='#148464'">
+              Aplicar Filtros
+          </button>
+
+            </div>
+        </div>
+
+        <!-- Filtro personalizado de data (hidden by default) -->
+        <div id="custom-date-range" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4 tw-mt-4 tw-hidden">
+            <div>
+                <label for="start-date" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-1">Data inicial</label>
+                <input type="date" id="start-date" class="tw-w-full tw-px-4 tw-py-2 tw-border tw-border-gray-300 tw-rounded-lg focus:tw-ring-indigo-500 focus:tw-border-indigo-500">
+            </div>
+            <div>
+                <label for="end-date" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700 tw-mb-1">Data final</label>
+                <input type="date" id="end-date" class="tw-w-full tw-px-4 tw-py-2 tw-border tw-border-gray-300 tw-rounded-lg focus:tw-ring-indigo-500 focus:tw-border-indigo-500">
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de análises -->
+    <div class="tw-bg-white tw-border tw-border-gray-200 tw-rounded-lg tw-overflow-hidden">
+        <div class="tw-overflow-x-auto">
+            <table class="tw-min-w-full tw-divide-y tw-divide-gray-200">
+                <thead class="tw-bg-gray-50">
+                    <tr>
+                        <th scope="col" class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-gray-500 tw-uppercase tw-tracking-wider">Nome</th>
+                        <th scope="col" class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-gray-500 tw-uppercase tw-tracking-wider">Data</th>
+                        <th scope="col" class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-gray-500 tw-uppercase tw-tracking-wider">Folículos</th>
+                        <th scope="col" class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-gray-500 tw-uppercase tw-tracking-wider">Volume</th>
+                        <th scope="col" class="tw-px-6 tw-py-3 tw-text-left tw-text-xs tw-font-medium tw-text-gray-500 tw-uppercase tw-tracking-wider">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="analysis-list" class="tw-bg-white tw-divide-y tw-divide-gray-200">
+                    <!-- Exemplo de item (será preenchido via JavaScript) -->
+                    <tr class="hover:tw-bg-gray-50">
+                        <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-text-sm tw-font-medium tw-text-gray-900">Paciente Maria - 05/2023</td>
+                        <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-text-sm tw-text-gray-500">15/05/2023</td>
+                        <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-text-sm tw-text-gray-500">24</td>
+                        <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-text-sm tw-text-gray-500">12.5 cm³</td>
+                        <td class="tw-px-6 tw-py-4 tw-whitespace-nowrap tw-text-sm tw-text-gray-500">
+                        <button class="tw-mr-3" style="color:#148464;" onmouseover="this.style.color='#0f5c48'" onmouseout="this.style.color='#148464'">
+                            <i class="fas fa-eye"></i>
+                        </button>
+
+                        <button style="color:#148464;" onmouseover="this.style.color='#0f5c48'" onmouseout="this.style.color='#148464'">
+                            <i class="fas fa-download"></i>
+                        </button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Paginação -->
+    <div class="tw-flex tw-items-center tw-justify-between tw-mt-4">
+        <div class="tw-text-sm tw-text-gray-500">
+            Mostrando <span class="tw-font-medium">1</span> a <span class="tw-font-medium">10</span> de <span class="tw-font-medium">24</span> resultados
+        </div>
+        <div class="tw-flex tw-space-x-2">
+            <button class="tw-px-3 tw-py-1 tw-border tw-border-gray-300 tw-rounded-md tw-text-sm tw-font-medium tw-text-gray-700 tw-bg-white hover:tw-bg-gray-50">
+                Anterior
+            </button>
+            <button class="tw-px-3 tw-py-1 tw-border tw-border-gray-300 tw-rounded-md tw-text-sm tw-font-medium tw-text-gray-700 tw-bg-white hover:tw-bg-gray-50">
+                Próxima
+            </button>
+        </div>
+    </div>
+    
+</div>
+  <!-- end department section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="row">
+        <!-- Contact -->
+        <div class="col-md-6 col-lg-3 footer_col">
+          <div class="footer_contact">
+            <h4>Reach at..</h4>
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>Location</span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>Call +01 1234567890</span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>demo@gmail.com</span>
+              </a>
+            </div>
+          </div>
+          <div class="footer_social">
+            <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- About -->
+        <div class="col-md-6 col-lg-3 footer_col">
+          <div class="footer_detail">
+            <h4>
+                Sobre
+              </h4>
+              <p>
+                Sistema criado por estudantes do IFPE para análise de ultrassons, auxiliando no diagnóstico de ovários policísticos com precisão e acessibilidade.
+              </p>
+
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="col-md-6 col-lg-2 mx-auto footer_col">
+          <div class="footer_link_box">
+            <h4>Links</h4>
+            <div class="footer_links">
+              <a href="index.html">Home</a>
+              <a href="analysis.html">Análise</a>
+              <a class="active" href="history.html">Histórico</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="col-md-6 col-lg-3 footer_col">
+         <h4>Equipe</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 6px;">Estudantes do IFPE – Campus Palmares e Paulista</li>
+            <li style="margin-bottom: 6px;">Orientação: Prof. Diogo Lopes</li>
+            <li>Apoio técnico: Dr. Roberto Luiz Reis Gomes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-info">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a href="https://html.design/"> Free Html Templates</a>
+          <br /><br />
+          &copy; <span id="displayYear"></span> Distributed By
+          <a href="https://themewagon.com/"> ThemeWagon</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- end footer section -->
+
+ <!-- jQery -->
+<script type="text/javascript" src="/static/js/jquery-3.4.1.min.js"></script>
+<!-- popper js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"></script>
+<!-- bootstrap js -->
+<script type="text/javascript" src="/static/js/bootstrap.js"></script>
+
+
+<!-- scripts separados -->
+<script type="text/javascript" src="/static/js/history.js"></script>
+
+<!-- custom js antigo (se tiver código extra, pode permanecer) -->
+<script type="text/javascript" src="/static/js/custom.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: {
+      preflight: false,
+    },
+    prefix: 'tw-', 
+  }
+</script>
+
+
+
+</body>
+
+</html>

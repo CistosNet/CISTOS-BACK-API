@@ -1,0 +1,58 @@
+/* analysis.css */
+
+/* Animação de pulse */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse-custom {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Dropzone */
+.dropzone {
+    border: 2px dashed #ddd;
+    transition: all 0.3s ease;
+    background-color: #f9fafb;
+}
+
+.dropzone.active {
+    border-color: #4f46e5;
+    background-color: #f0f4ff;
+}
+
+/* Resultado da imagem */
+.result-image-container {
+    transition: all 0.5s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.result-image-container.show {
+    max-height: 1000px;
+}
+
+/* Lista de arquivos */
+.file-item {
+    transition: all 0.3s ease;
+}
+
+.file-item:hover {
+    background-color: #f3f4f6;
+}
+
+.btn-green-outline {
+    background-color: transparent;
+    color: #148464; /* cor do texto */
+    border: 2px solid #148464; /* contorno */
+    transition: all 0.3s;
+  }
+  .btn-green-outline:hover {
+    background-color: #148464; /* fundo no hover */
+    color: white; /* texto branco no hover */
+  }
